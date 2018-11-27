@@ -1,0 +1,61 @@
+apply plugin: 'com.android.application'
+apply from: 'configuration.gradle'
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    defaultConfig {
+        applicationId "com.akifsabeh.networkexample"
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+        versionCode project.versionCode
+        versionName project.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "BASEURL", "\"https://jsonplaceholder.typicode.com/\""
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //support
+    implementation "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    implementation "com.android.support:design:${supportLibraryVersion}"
+    implementation "com.android.support:cardview-v7:${supportLibraryVersion}"
+    implementation "com.android.support:support-v4:${supportLibraryVersion}"
+
+    /*RX*/
+    implementation "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
+    implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+
+    //okhttp
+    implementation "com.squareup.okhttp3:logging-interceptor:${okttpVersion}"
+
+
+    //Butter knife
+    implementation "com.jakewharton:butterknife:${butterKnifeVersion}"
+    annotationProcessor "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:${glideVersion}"
+    annotationProcessor "com.github.bumptech.glide:compiler:${glideVersion}"
+
+    implementation "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
