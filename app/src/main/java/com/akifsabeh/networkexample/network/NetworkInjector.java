@@ -20,9 +20,8 @@ public class NetworkInjector {
 
     public static NetworkInjector getInstance() {
         if (instance == null)
-            return new NetworkInjector();
-        else
-            return instance;
+            instance = new NetworkInjector();
+        return instance;
     }
 
     public NetworkService provideNetworkService() {
